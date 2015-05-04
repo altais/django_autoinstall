@@ -19,7 +19,7 @@ mkdir -p /website/$site/logs/
 EOF
 echo "#!/bin/bash
 NAME=\"$site\"
-DJANGODIR=/website/$site/$site
+DJANGODIR=/website/$site/src
 SOCKFILE=/website/$site/run/gunicorn.sock
 USER=$site
 GROUP=$site
@@ -82,11 +82,11 @@ server {
     error_log /website/$site/logs/nginx-error.log;
  
     location /static/ {
-        alias   /website/$site/static/;
+        alias   /website/$site/src/static/;
     }
     
     location /media/ {
-        alias   /website/$site/media/;
+        alias   /website/$site/src/media/;
     }" >> /etc/nginx/sites-available/$site
  echo 'location / {
         # an HTTP header important enough to have its own Wikipedia entry:
